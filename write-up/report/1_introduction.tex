@@ -1,3 +1,82 @@
+% CHAPTER 1: INTRODUCTION
+% Include this file from thesis.tex using: \input{1_introduction}
+
 \chapter{Introduction}
 
-This is the introduction chapter.
+This chapter introduces the background of the research, discusses the motivation behind the study, presents the research objectives, and outlines the scope and limitations of the investigation.
+
+\section{Introduction}
+
+Efficient heat transfer is essential in engineering applications such as thermal management, electronic cooling and thermal energy storage. Conventional fluids, particularly water, are widely used to transport heat because of their availability and favourable thermal properties. However, when a system experiences fluctuating heat loads, sensible heating alone may not provide sufficient thermal buffering. This has motivated the development of working fluids that can both transport and temporarily store thermal energy.
+
+One approach is to incorporate phase change materials (PCMs), which absorb or release latent heat during melting and solidification. However, unencapsulated PCMs can present practical difficulties, including leakage in the liquid state and relatively low thermal conductivity. Nano-encapsulated phase change materials (NEPCMs) address the containment issue by enclosing a PCM core within a protective shell. When these particles are dispersed in a base fluid such as water, the resulting NEPCM--water suspension combines fluid-based heat transport with the latent heat storage capability of the PCM cores.
+
+Natural convection provides a means of transferring heat without an external pump or fan. In a differentially heated enclosure, temperature-induced density differences generate buoyancy forces and drive fluid circulation. The resulting heat transfer depends on the fluid properties, temperature difference, enclosure geometry and flow dimensionality. Although two-dimensional cavity models are useful for studying fundamental behaviour, they cannot represent velocity and temperature variations in the third spatial direction. Three-dimensional investigations of cubic cavities have demonstrated the presence of transverse flow components and flow structures that are not captured by two-dimensional models \citep{fusegi1991,tric2000,wakashima2004}.
+
+Numerical simulation is therefore an important approach for studying the coupled flow and thermal behaviour of NEPCM suspensions. The finite element method (FEM) provides a framework for approximating the governing partial differential equations over a discretised domain. Previous NEPCM studies have used FEM to examine natural convection in different cavity configurations \citep{ghalambaz2019,ghalambaz2020}. Nevertheless, the combined effects of NEPCM phase change and three-dimensional natural convection in a water-based suspension require further investigation.
+
+Accordingly, this research focuses on the finite element simulation of three-dimensional natural convection heat transfer of an NEPCM--water suspension in a differentially heated enclosure. The study investigates the fluid-flow and temperature fields and evaluates heat transfer performance using relevant indicators, including the average Nusselt number.
+
+\section{Research Motivation}
+
+The motivation for this research is based on three related considerations.
+
+\subsection{Thermal Storage Capability of NEPCM--Water Suspensions}
+
+The latent heat of a PCM provides an additional thermal energy storage mechanism beyond the sensible heat capacity of the base fluid. NEPCM suspensions offer a potential approach to combining the advantages of conventional heat transfer fluids and latent heat storage materials. The encapsulation structure consists of a PCM core surrounded by a protective shell. The core absorbs thermal energy during melting and releases energy during solidification, while the shell retains the PCM within the particle.
+
+When NEPCM particles are dispersed in water, the resulting suspension can transport thermal energy through fluid motion while also storing and releasing latent heat through the phase change of the PCM cores. This combination may improve the thermal response of the working fluid compared with pure water under suitable operating conditions.
+
+\citet{ghalambaz2019} investigated NEPCM suspension in a differentially heated square cavity and reported that the dimensionless fusion temperature was an important factor in cavity heat transfer. Similarly, \citet{golab2021} reported a heat transfer enhancement in a numerical study of NEPCM particles dispersed in water inside a rectangular cavity under the investigated conditions. These results suggest that NEPCM--water suspensions have potential thermal storage capability and motivate further study. However, the reported enhancement values are specific to the models, materials and operating conditions used in those studies and should not be treated as universal performance improvements.
+
+\subsection{Importance of Three-Dimensional Modelling}
+
+The dimensionality of the computational model is also important. Two-dimensional simulations are useful for reducing computational cost and examining fundamental physical mechanisms. However, they cannot represent variations in the third spatial direction. In an actual cubic enclosure, the flow may contain three-dimensional structures that influence the distribution of velocity, temperature and heat transfer. \citet{tric2000} demonstrated that three-dimensional natural convection in a cubic cavity can exhibit changes in flow structure that are not adequately described by simply extending two-dimensional results. \citet{fusegi1991} reported a non-zero transverse velocity component in a differentially heated cubic enclosure and compared the three-dimensional solution with two-dimensional results.
+
+\citet{wakashima2004} also presented three-dimensional benchmark solutions for natural convection in a cubic cavity with differentially heated vertical walls. Their study provides reference numerical results for assessing three-dimensional natural convection solvers. These investigations demonstrate the importance of considering three-dimensional effects and establishing numerical accuracy when modelling natural convection in cubic enclosures.
+
+Therefore, investigating NEPCM--water suspension using a three-dimensional model is important for understanding how the additional phase change mechanism interacts with the three-dimensional natural convection flow. Such a model can provide more detailed information about the velocity and temperature fields than a two-dimensional approximation, although it also requires greater computational resources.
+
+\subsection{Need for a Numerical Investigation Using the Finite Element Method}
+
+The natural convection of NEPCM suspensions involves coupled conservation equations for mass, momentum and thermal energy. Analytical solutions are generally difficult to obtain for nonlinear governing equations in complex flow and heat transfer problems. Numerical methods are therefore widely adopted to obtain approximate solutions. Among these methods, the finite element method is suitable for solving partial differential equations over discretised domains. Its weak-form formulation provides a systematic framework for incorporating boundary conditions and constructing the algebraic equations required for numerical solution.
+
+The finite element method has been applied in previous investigations of NEPCM natural convection. \citet{ghalambaz2019} used a Galerkin finite element formulation to solve the governing equations for an NEPCM suspension in a square cavity. \citet{ghalambaz2020} also employed FEM to investigate free convection of NEPCM suspension in an inclined porous cavity. These studies support the suitability of FEM for analysing NEPCM-related natural convection problems.
+
+However, the accuracy of a numerical solution depends on factors such as mesh resolution, element selection, solver settings and verification against appropriate benchmark results. In particular, higher Rayleigh numbers can produce steep temperature gradients and thin boundary layers, which may require local mesh refinement. A systematic numerical investigation is therefore necessary to ensure that the predicted flow and heat transfer characteristics are sufficiently reliable.
+
+\section{Research Objectives}
+
+The objectives of this research are:
+
+\begin{enumerate}
+    \item To develop a three-dimensional finite element model for simulating natural convection heat transfer of an NEPCM--water suspension in a differentially heated enclosure.
+    \item To investigate the effects of selected dimensionless parameters on the fluid-flow and temperature distributions of the NEPCM--water suspension.
+    \item To evaluate the heat transfer performance of the NEPCM--water suspension using relevant thermal indicators, such as the average Nusselt number, and compare its performance with that of the base fluid.
+\end{enumerate}
+
+\section{Scope and Limitations}
+
+This section outlines the scope of the present study followed by the limitations associated with the adopted assumptions and computational approach.
+
+\subsection{Scope of the Study}
+
+This research concerns the numerical investigation of three-dimensional natural convection heat transfer in a differentially heated enclosure using the finite element method. The scope includes the following aspects:
+
+\begin{enumerate}
+    \item \textbf{Physical Model and Computational Domain:} A three-dimensional enclosure is used as the computational domain. The two opposite vertical walls are maintained at different temperatures to generate buoyancy-driven flow, while the remaining walls are treated as insulated, subject to the final physical model adopted.
+    \item \textbf{Working Fluid:} The working fluid is water containing dispersed NEPCM particles. The particles consist of a phase-change core surrounded by a protective shell. Their behaviour is represented using the effective thermophysical properties and phase-change model selected for the study.
+    \item \textbf{Mathematical Model:} The model is based on conservation of mass, momentum and thermal energy. Buoyancy is represented using the Boussinesq approximation where its assumptions are appropriate. The energy formulation accounts for the NEPCM thermal contribution according to the selected model.
+    \item \textbf{Numerical Method:} FEM is used to discretise the governing equations. The work includes formulation of the weak forms, selection of finite element spaces, application of boundary conditions and solution of the resulting algebraic system.
+    \item \textbf{Dimensionless Parameters:} The investigation may consider the Rayleigh number, Prandtl number, NEPCM volume fraction, dimensionless fusion temperature and Stefan number. The final parameter ranges will be selected according to the adopted model, material properties and computational resources.
+    \item \textbf{Performance Evaluation:} The results are assessed using velocity and temperature distributions, flow patterns and heat-transfer indicators. The average Nusselt number is used to evaluate overall heat transfer, and NEPCM--water results are compared with corresponding pure-water results where appropriate.
+    \item \textbf{Numerical Verification:} Mesh refinement and comparison with suitable published reference solutions are used to assess numerical reliability. A pure-fluid natural-convection case may be verified before the additional NEPCM model is introduced.
+\end{enumerate}
+
+\subsection{Limitations of the Study}
+
+The predictions depend on the assumptions and constitutive correlations used to represent the suspension. Different models for effective density, viscosity, thermal conductivity and heat capacity may lead to different flow and heat-transfer predictions. The applicability of the Boussinesq approximation is also restricted by the magnitude of density variations and the temperature range considered.
+
+The model may assume steady, laminar flow for the selected operating conditions. If the flow becomes unsteady or turbulent at higher Rayleigh numbers, a steady laminar formulation may not fully represent the physical behaviour. In addition, three-dimensional FEM simulations require substantial computational resources, and mesh resolution may need to be increased to capture thin thermal boundary layers.
+
+Finally, this research is numerical. Unless suitable experimental data are available, numerical predictions do not constitute direct experimental confirmation of the actual performance of NEPCM--water suspensions. The conclusions are therefore subject to the assumptions, verification procedures and limitations of the mathematical model.
