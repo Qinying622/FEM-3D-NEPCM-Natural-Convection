@@ -1,3 +1,123 @@
 \chapter{Literature Review}
 
-This is the literature review chapter.
+This chapter reviews the fundamental concepts and previous studies related to natural convection, phase change materials, NEPCM suspensions and numerical modelling, providing the theoretical background and research context for the present study.
+
+\section{Natural Convection in Differentially Heated Enclosures}
+
+Natural convection is a heat transfer mechanism driven by buoyancy forces resulting from temperature-induced density differences within a fluid. In a differentially heated enclosure, the fluid near the heated wall becomes warmer and less dense, causing it to rise, while the cooler and denser fluid near the cold wall descends. This movement establishes fluid circulation and transfers heat from the hot wall to the cold wall through conduction and convection.
+
+The behaviour of natural convection is influenced by several factors, including temperature difference, gravitational acceleration, enclosure geometry and the thermophysical properties of the working fluid. The governing equations describing this phenomenon are based on the conservation of mass, momentum and energy. The momentum equation accounts for buoyancy forces that drive fluid motion, while the energy equation describes heat transfer within the fluid.
+
+The Boussinesq approximation is commonly adopted to simplify natural convection modelling. It assumes that fluid density remains constant in the governing equations except in the buoyancy term, where density variation due to temperature is considered. This approximation is generally suitable when temperature-induced density variations are relatively small.
+
+Two important dimensionless parameters used to characterise natural convection are the Rayleigh number (Ra) and Prandtl number (Pr). The Rayleigh number represents the relative importance of buoyancy forces compared with momentum and thermal diffusion, whereas the Prandtl number describes the ratio of momentum diffusivity to thermal diffusivity. Together, these parameters influence the fluid circulation and temperature distribution within the enclosure.
+
+\subsection{Two-Dimensional Cavity Studies}
+
+A differentially heated square cavity is a commonly used configuration for studying natural convection. \citet{devahldavis1983} presented a benchmark numerical solution for air in a square cavity over Rayleigh numbers from \(10^3\) to \(10^6\), using a Prandtl number of 0.71. The work is widely used to assess numerical implementations of two-dimensional natural convection. Its benchmark data, however, correspond to air and a two-dimensional geometry; they should not be treated directly as validation data for an NEPCM--water suspension.
+
+\citet{benchabi2017} later numerically studied natural convection of air in a two-dimensional square cavity using the finite volume method and the SIMPLE algorithm. They compared the calculated thermal and dynamic fields with experimental results and examined the influence of Rayleigh number. This study provides a further example of the use of a two-dimensional cavity to examine buoyancy-driven flow and heat transfer. It also illustrates the use of finite-volume discretisation for this class of problem.
+
+\subsection{Three-Dimensional Cubic-Enclosure Studies}
+
+Three-dimensional studies are important because a cubic enclosure permits velocity and temperature variations in the spanwise direction. \citet{fusegi1991} investigated steady natural convection of air in a differentially heated cubical enclosure for Rayleigh numbers between \(10^3\) and \(10^6\). Their high-resolution finite-difference calculations showed that the transverse velocity component was non-zero, although smaller than the principal circulation components. They also compared the three-dimensional results with two-dimensional solutions and experimental measurements. This provides direct evidence that a two-dimensional approximation cannot represent every feature of the three-dimensional flow.
+
+\citet{tric2000} presented accurate numerical solutions for natural convection of air in a differentially heated cubic cavity over a range of Rayleigh numbers. Their work examined the three-dimensional flow structure and provides useful reference information for understanding the evolution of the flow as buoyancy increases.
+
+\citet{wakashima2004} developed benchmark solutions for natural convection in a cubic cavity with differentially heated vertical walls. They considered adiabatic horizontal and end walls and examined cases at Rayleigh numbers of \(10^4\), \(10^5\) and \(10^6\) for air with a Prandtl number of 0.71. Their high-order time--space method and grid-dependency assessment provide reference data for three-dimensional numerical modelling.
+
+\citet{bennett2006} also investigated natural convection of air in a cubic cavity using two benchmark thermal boundary-condition cases in which the remaining walls were either adiabatic or perfectly conducting. They solved cases at Rayleigh numbers from \(10^3\) to \(10^6\) using an implicit numerical method and reported agreement with published computational and experimental data. The comparison between the two thermal boundary-condition cases is relevant because the assumed thermal condition on the enclosure walls can influence the predicted flow and heat transfer.
+
+Taken together, these studies establish a foundation for three-dimensional natural-convection modelling and provide benchmark cases for numerical verification. However, they primarily concern conventional fluids, particularly air, rather than NEPCM suspensions. Their benchmark results are therefore most appropriate for checking a pure-fluid baseline with matching geometry, boundary conditions and dimensionless properties.
+
+\section{Phase Change Materials and Nano-Encapsulation}
+
+Phase change materials (PCMs) store or release thermal energy during a phase transition, commonly melting and solidification. Their energy-storage capability includes sensible heat, associated with a temperature change, and latent heat, associated with the phase transition. For a mass \(m\) of material with latent heat of fusion \(L\), the latent heat contribution is:
+
+\begin{equation}
+    Q_{\mathrm{latent}} = mL
+\end{equation}
+
+PCMs are attractive for thermal energy storage and temperature regulation. However, many conventional PCMs have relatively low thermal conductivity, which can limit the rate of heat absorption and release. In addition, a PCM that melts into a liquid state requires suitable containment to prevent leakage. Encapsulation addresses the containment issue by enclosing the PCM within a shell.
+
+An NEPCM particle generally consists of a phase-change core and a protective shell. The core absorbs latent heat during melting and releases it during solidification, while the shell retains the PCM and forms the particle boundary. When these particles are dispersed in a carrier fluid, the resulting suspension can transport heat through fluid motion while also storing or releasing latent heat. In the present research, water is the base fluid and the working medium is referred to as an NEPCM--water suspension.
+
+NEPCMs should be distinguished from nano-enhanced PCMs. Nano-enhanced PCMs are produced by adding solid nanoparticles directly to a PCM, whereas NEPCMs contain a PCM core enclosed by a shell and may subsequently be dispersed in a separate carrier fluid. The two material systems have different physical structures and should not be treated as interchangeable.
+
+The behaviour of an NEPCM suspension depends on the properties of the base fluid, PCM core and shell, as well as the particle volume fraction. Effective density, viscosity, thermal conductivity, specific heat capacity and thermal expansion coefficient may all influence the flow and temperature fields. An increase in particle concentration therefore does not necessarily improve every aspect of performance. For example, increased viscosity may affect circulation even when the thermal storage capacity increases.
+
+Two phase-change parameters frequently used in NEPCM modelling are the fusion temperature and Stefan number. The fusion temperature determines the temperature range in which the PCM core changes phase. In a dimensionless model, the fusion temperature is often expressed relative to the reference temperature difference between the hot and cold walls. Its value influences the location within the enclosure where phase change occurs. The Stefan number expresses the relative importance of sensible heat to latent heat; a commonly used form is:
+
+\begin{equation}
+    \mathrm{Ste} = \frac{C_p \Delta T}{L}
+\end{equation}
+
+The exact definition depends on the reference properties and nondimensional formulation. These parameters are important because the thermal performance of NEPCM suspensions depends on whether the PCM core undergoes phase change under the operating temperature conditions. If the fusion temperature is not suitably located within the operating temperature range, the latent heat contribution may be limited.
+
+\section{Natural Convection of NEPCM Suspensions}
+
+Research on NEPCM natural convection combines the buoyancy-driven transport of the carrier fluid with the latent heat storage of the encapsulated particles. The particles may absorb or release heat depending on their local temperature, which can modify the temperature distribution and the overall heat-transfer rate. The net effect depends on the fusion temperature, particle concentration, effective properties, Rayleigh number, Stefan number and enclosure configuration.
+
+\subsection{NEPCM in a Differentially Heated Cavity}
+
+\citet{ghalambaz2019} numerically investigated natural convective flow and heat transfer of NEPCM suspensions in a differentially heated square cavity. They used a Galerkin finite element formulation and examined parameters including particle volume fraction, Rayleigh number, Prandtl number and dimensionless fusion temperature. Their results identified fusion temperature as an important factor in the heat-transfer response. An appropriate fusion temperature could produce an improvement in heat transfer of approximately 10\% compared with the base fluid. This study is particularly relevant because it establishes an FEM framework for NEPCM natural convection in a cavity. Its main limitation for the present research is the two-dimensional geometry.
+
+A separate study of NEPCM particles dispersed in water inside a rectangular cavity considered an n-nonadecane core and polyurethane shell and solved the model using the finite volume method with the SIMPLE algorithm \citep{golab2021}. The study reported heat-transfer enhancement of up to 48\% for the conditions investigated. This work is directly relevant to the choice of water as a base fluid. Nevertheless, the reported enhancement is specific to its material properties, geometry and operating conditions and should not be generalised to other NEPCM suspensions.
+
+\subsection{Effects of Enclosure Configuration and Conjugate Heat Transfer}
+
+\citet{ghalambaz2020} studied free convection of an NEPCM suspension in an inclined porous cavity using FEM. They investigated the effects of fusion temperature, Stefan number and inclination angle. Their results showed that the heat-transfer response depended on both phase-change parameters and cavity orientation. The reported maximum enhancement was specific to the porous-cavity configuration and the parameter range examined. The presence of a porous medium and an inclined enclosure distinguishes this configuration from a conventional cubic cavity.
+
+In a later study, \citet{ghalambaz2023} investigated conjugate heat transfer and entropy generation for a dilute water-based NEPCM suspension in a cavity with partially heated walls and thermally conducting solid blocks. Their weighted finite element analysis considered Rayleigh number, block height, NEPCM concentration and thermal-conductivity ratio. The results showed that both heat transfer and entropy generation depended on the thermal boundary configuration and suspension parameters. The study is useful because it broadens the assessment beyond heat transfer alone by including entropy generation. However, its two-dimensional conjugate configuration differs from the three-dimensional enclosure considered in the present research.
+
+A further study considered a water-based NEPCM suspension in a porous grooved cavity and used a higher-order Galerkin finite element method \citep{hussain2022}. The investigation examined Rayleigh number, porosity-related parameters, fusion temperature, Stefan number and the geometry of an internal obstruction. It demonstrated that enclosure geometry and phase-change parameters can jointly influence the flow and thermal fields. The porous medium and grooved geometry, however, limit direct comparison with a conventional cubic cavity.
+
+\subsection{Summary of NEPCM Natural-Convection Studies}
+
+The reviewed NEPCM studies show that the thermal response is governed by more than particle addition alone. Fusion temperature and latent heat influence the phase-change contribution, while particle concentration and effective viscosity can affect the circulation. In addition, cavity inclination, porous media, conducting blocks and internal obstructions alter the flow configuration. Consequently, enhancement values reported by different studies should be compared cautiously because their geometries, material models and operating conditions are not identical.
+
+\section{Numerical Methods for Natural-Convection Modelling}
+
+Natural-convection models involve coupled conservation equations for mass, momentum and energy. These equations are generally nonlinear and require numerical solution for practical enclosure configurations. When NEPCM particles are included, the energy model must also account for the thermal contribution of the PCM cores and the adopted effective-property formulation.
+
+\subsection{Finite Difference Method}
+
+The finite difference method approximates derivatives in the governing equations using differences between values at neighbouring grid points. It is commonly applied to problems with relatively simple computational domains and structured grids.
+
+\citet{devahldavis1983} used second-order central difference approximations to investigate natural convection in a square cavity. The study demonstrated the importance of mesh refinement and numerical accuracy when obtaining benchmark solutions. \citet{fusegi1991} and \citet{bennett2006} used finite-difference-based approaches for cubic-cavity benchmark problems.
+
+The finite difference method is relatively straightforward to implement for regular geometries. However, representing complex geometries and irregular computational domains may require additional treatment of the grid and boundary conditions.
+
+\subsection{Finite Volume Method}
+
+The finite volume method divides the computational domain into a number of control volumes. The governing equations are integrated over each control volume, and the resulting equations represent the conservation of physical quantities such as mass, momentum and energy.
+
+The method is widely used in computational fluid dynamics because it is based on a conservative formulation. \citet{golab2021} employed the finite volume method together with the SIMPLE algorithm to investigate natural convection heat transfer. This demonstrates its applicability to NEPCM suspension modelling.
+
+The SIMPLE algorithm is commonly used to handle the coupling between pressure and velocity in incompressible fluid flow calculations. However, the accuracy of the numerical solution still depends on the discretisation scheme, mesh quality and convergence of the solution.
+
+\subsection{Finite Element Method}
+
+The finite element method (FEM) divides the computational domain into elements and approximates the unknown fields using basis functions. The governing equations are commonly transformed into weak form before assembly into a global algebraic system.
+
+For natural convection, FEM can be used to discretise the continuity, momentum and energy equations. The velocity, pressure and temperature fields are approximated using suitable finite element spaces. \citet{ghalambaz2019} used the Galerkin finite element method to solve the governing equations for NEPCM natural convection in a square cavity. \citet{ghalambaz2020} also employed FEM to investigate NEPCM suspension in an inclined porous cavity. \citet{hussain2022} further demonstrated the use of a higher-order Galerkin FEM formulation for a more complex enclosure.
+
+These studies support the application of FEM to natural convection problems involving NEPCM suspensions. For the present research, FEM provides a suitable framework for developing a three-dimensional numerical model and solving the coupled governing equations.
+
+\subsection{Verification and Validation}
+
+Numerical verification examines whether the mathematical model has been implemented and solved correctly, while validation assesses whether the predictions agree with suitable reference or experimental data. Mesh refinement is an important verification step because a coarse mesh may not resolve steep velocity or temperature gradients, particularly near heated and cooled walls. A mesh-independence study compares quantities such as maximum velocity and average Nusselt number across progressively refined meshes.
+
+For a two-dimensional pure-fluid baseline, the benchmark of \citet{devahldavis1983} is a recognised reference. For three-dimensional natural convection, the cubic-cavity studies of \citet{fusegi1991}, \citet{tric2000} and \citet{wakashima2004}, together with the benchmark cases of \citet{bennett2006}, provide relevant comparison data. A benchmark should only be used when its geometry, thermal boundary conditions, fluid properties and dimensionless parameters are compatible with the numerical case being checked. Agreement with an air benchmark can support verification of the flow solver, but it does not independently validate the NEPCM material model.
+
+A practical approach for the present research is to establish and verify a pure-fluid natural-convection model first. The NEPCM effective properties and phase-change contribution can then be introduced and assessed separately. This staged procedure helps distinguish errors in the baseline flow solver from effects arising from the additional suspension model.
+
+\section{Research Gap}
+
+The literature indicates two related but largely separate research directions. First, NEPCM natural-convection studies have investigated phase-change effects in two-dimensional cavities and in configurations involving inclination, porous media, conducting blocks or grooved boundaries \citep{ghalambaz2019,ghalambaz2020,ghalambaz2023,golab2021,hussain2022}. These studies demonstrate that fusion temperature, Stefan number, particle concentration and enclosure configuration can influence heat transfer and entropy generation. However, the cited configurations do not establish the behaviour of an NEPCM--water suspension in a conventional three-dimensional differentially heated cubic enclosure.
+
+Second, three-dimensional natural-convection studies have developed numerical solutions and benchmark data for cubic enclosures, primarily using conventional fluids such as air \citep{fusegi1991,tric2000,wakashima2004,bennett2006}. These studies establish the importance of spanwise flow and provide reference cases for assessing three-dimensional solvers, but they do not include the additional latent-heat behaviour of NEPCM particles.
+
+Therefore, based on the literature reviewed for this research, a research gap can be identified in the numerical investigation of the combined effects of three-dimensional natural convection and NEPCM phase change behaviour in a water-based suspension within a differentially heated enclosure. In particular, further investigation is required to understand how the phase change characteristics and effective thermophysical properties of NEPCM--water suspension interact with three-dimensional buoyancy-driven flow and influence heat transfer performance.
+
+The present research addresses this gap by developing a three-dimensional finite element model for natural convection heat transfer of NEPCM--water suspension. The model will be used to investigate the velocity and temperature distributions and evaluate heat transfer performance using relevant parameters, including the average Nusselt number. The numerical framework will also be assessed through suitable verification procedures and comparison with appropriate reference solutions. This provides a basis for understanding the influence of selected dimensionless parameters on the thermal and hydrodynamic performance of the suspension and its potential application in thermal management systems.
